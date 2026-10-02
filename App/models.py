@@ -20,6 +20,10 @@ class Cliente(models.Model):
         help_text="insira seu telefone",
         verbose_name="Telefone"
     );
+
+    def __str__(self):
+        return self.nome
+    
     
 class Mecanico(models.Model):
     nome = models.CharField(max_length=50, blank=False, null=False, 
@@ -37,19 +41,81 @@ class Mecanico(models.Model):
         verbose_name="Telefone"
     );
 
+    def __str__(self):
+        return self.nome
+
 class Marca(models.Model):
     nome = models.CharField(max_length=50, unique=True)
 
     def __str__(self):
-        # Na hora de preencher os dados na tela do formulario. isso faz aparecer o nome da marca escrito na tela
+        # Na hora de preencher os dados na tela do formulario. 
+        # isso faz aparecer o nome da marca escrito na tela
         return self.nome
 
 class Veiculo(models.Model):
     # Para um sistema comercial usar o models.CASCADE garante o risco de, se uma marca for apagado todo veiculo cadastrado com a marca será apagado também
     # Usar models.PROTECT, impede a exclusão de uma marca se já houver um carro usando ela.
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
-    nome 
-    modelo
-    ano_fabricacao
-    ano_modelo
-    cor
+    cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
+
+    nome = models.CharField(max_length=30,)
+    modelo = models.CharField(max_length=20, null=False, blank=False)
+    ano_fabricacao = models.PositiveIntegerField()
+    ano_modelo = models.PositiveIntegerField()
+    cor = models.CharField(max_length=20, null=False, blank=False)
+
+    def __str__(self):
+        return f"{self.nome} - {self.marca} - {self.modelo}"
+
+class Peca(models.Model):
+
+    nome = models.CharField(
+        max_length=30, null=False, blank=False,
+        verbose_name="Nome Peça")
+    
+    valor_unitario = models.DecimalField(
+        max_digits=4, decimal_places=2, default=0.00,
+        verbose_name="Preço Unitário");
+
+    def __str__(self):
+        return self.nome
+
+class Servico(models.Model):
+    nome = models.CharField(
+        max_length=30, null=False, blank=False,
+        verbose_name="Serviço")
+    valor = models.DecimalField(
+        max_digits=4, decimal_places=2, default=0.00,
+        verbose_name="Valor Serviço")
+
+    def __str__(self):
+        return self.nome
+
+class Orcamento(models.Model):
+
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.PROTECT)
+
+    data = models.DateField(verbose_name="Data Orçamento")
+
+class OrcamentoPeca(models.Model):
+
+    orcamento = models.ForeignKey(Orcamento, on_delete=models.PROTECT)
+    peca = models.ForeignKey(Peca, on_delete=models.PROTECT)
+
+    quantidade = models.PositiveIntegerField()
+    valor_cobrado = models.DecimalField(max_digits=4, decimal_places=2, default=0.00)
+
+
+class OrcamentoServico(models.Model):
+
+    orcamento = models.ForeignKey(Orcamento, on_delete=models.PROTECT)
+    servico = models.ForeignKey(Servico, on_delete=models.PROTECT)
+
+
+# table mecanico_servico {
+#   id_mecanico_servico int [pk, not null]
+
+#   id_mecanico int  [Ref: > mecanico.id_mecanico]
+#   id_servico int [Ref: > servicos.id_servico]
+#   data date
+# }
