@@ -58,11 +58,26 @@ class Veiculo(models.Model):
     marca = models.ForeignKey(Marca, on_delete=models.PROTECT)
     cliente = models.ForeignKey(Cliente, on_delete=models.PROTECT)
 
-    nome = models.CharField(max_length=30,)
-    modelo = models.CharField(max_length=20, null=False, blank=False)
-    ano_fabricacao = models.PositiveIntegerField()
-    ano_modelo = models.PositiveIntegerField()
-    cor = models.CharField(max_length=20, null=False, blank=False)
+    nome = models.CharField(
+        max_length=100, null=False, blank=False,
+        verbose_name="Nome Veiculo"
+        )
+    modelo = models.CharField(
+        max_length=200, null=False, blank=False,
+        verbose_name="Modelo"
+        )
+    ano_fabricacao = models.PositiveIntegerField(
+        null=False, blank=False,
+        verbose_name="Ano de Fabricação"
+        )
+    ano_modelo = models.PositiveIntegerField(
+        null=False, blank=False,
+        verbose_name="Ano Modelo"
+    )
+    cor = models.CharField(
+        max_length=80, null=False, blank=False,
+        verbose_name="Cor veiculo"
+        )
 
     def __str__(self):
         return f"{self.nome} - {self.marca} - {self.modelo}"
@@ -70,22 +85,22 @@ class Veiculo(models.Model):
 class Peca(models.Model):
 
     nome = models.CharField(
-        max_length=30, null=False, blank=False,
+        max_length=200, null=False, blank=False,
         verbose_name="Nome Peça")
     
     valor_unitario = models.DecimalField(
-        max_digits=4, decimal_places=2, default=0.00,
-        verbose_name="Preço Unitário");
+        max_digits=6, decimal_places=2, default=0.00,
+        verbose_name="Preço Unitário")
 
     def __str__(self):
         return self.nome
 
 class Servico(models.Model):
     nome = models.CharField(
-        max_length=30, null=False, blank=False,
+        max_length=100, null=False, blank=False,
         verbose_name="Serviço")
     valor = models.DecimalField(
-        max_digits=4, decimal_places=2, default=0.00,
+        max_digits=8, decimal_places=2, default=0.00,
         verbose_name="Valor Serviço")
 
     def __str__(self):
@@ -103,7 +118,7 @@ class OrcamentoPeca(models.Model):
     peca = models.ForeignKey(Peca, on_delete=models.PROTECT)
 
     quantidade = models.PositiveIntegerField()
-    valor_cobrado = models.DecimalField(max_digits=4, decimal_places=2, default=0.00)
+    valor_cobrado = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
 
 
 class OrcamentoServico(models.Model):
