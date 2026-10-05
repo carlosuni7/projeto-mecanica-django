@@ -10,6 +10,80 @@
     <title>Agenda Django</title>
   </head>
   <body>
+    <header></header>
     <h1>Hello World!</h1>
+
+    <aside class="menu-lateral">
+      <div class="logo-empresa">
+        <div class="wrench">
+          <img src="{% static 'assets/wrench.svg' %}" alt="logo-wrench" />
+        </div>
+        <div class="nome-sistema">
+          <span>Oficina</span>
+          <span>Gestão Inteligente</span>
+        </div>
+      </div>
+
+      <nav>
+        {% comment %} <div class="link-nav">
+          <img src="{% static 'assets/layout-dashboard' %}" alt="icone dashboard" />
+          <a href="">Visão Geral</a>
+        </div> {% endcomment %}
+        <div class="link-nav">
+          <img src="{% static 'assets/users.svg' %}" alt="icone clientes" />
+          <a href="">Clientes</a>
+        </div>
+        <div class="link-nav">
+          <img src="{% static 'assets/car-front.svg' %}" alt="icone veiculos" />
+          {% comment %} <a href="{% url 'pageVeiculos' %}">Veiculos</a> {% endcomment %}
+        </div>
+        <div class="link-nav">
+          <img src="{% static 'assets/package.svg' %}" alt="icone peças" />
+          {% comment %} <a href="{% url 'pagePecas' %}">Peças</a> {% endcomment %}
+        </div>
+        <div class="link-nav">
+          <img src="{% static 'assets/file-text.svg' %}" alt="icone orçamentos" />
+          {% comment %} <a href="{% url '' %}">Orçamentos</a> {% endcomment %}
+        </div>
+      </nav>
+      <main class="container">
+        <div class="cabecalho-pagina">
+          <div class="titulo-acao">
+            <div class="introducao">
+              <h1 class="titulo">Clientes</h1>
+              <p class="descricao">Organize seus contatos e acompanhe os veículos de cada cliente.</p>
+            </div>
+            <a class="btn-action" href="{% url 'cadClientes' %}">
+              <img src="{% static 'assets/plus.svg' %}" alt="icone cadastrar" />
+              <span>Cadastrar cliente</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="listagem-clientes">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome completo</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for dado in dados %}
+                <tr>
+                  <td>{{ dado.nome }}</td>
+                  <td>{{ dado.email }}</td>
+                  <td>{{ dado.cpf }}</td>
+                  <td>{{ dado.telefone }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        
+      </main>
+    </aside>
   </body>
 </html>
