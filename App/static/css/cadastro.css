@@ -1,0 +1,153 @@
+.cadastro-orientacao {
+    display: flex;
+    flex-direction: row;
+
+    gap: 24px;
+}
+
+.cadastro-orientacao .formulario-cliente {
+    width: 824px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.formulario-cliente .painel {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+
+    padding: 24px 24px;
+
+    background-color: #FFFFFF;
+    border-radius: 12px;
+}
+
+.painel .cabecalho-painel .introducao {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.introducao label:nth-child(1) {
+    color: #18243D;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.introducao label:nth-child(2) {
+    color: #69758C;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.painel .grupo-campos {
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+}
+
+.painel .grid-veiculos {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+}
+
+.grid-veiculos .campo-1, .grid-veiculos .campo-2 {
+    grid-column: span 3;
+}
+
+.grid-veiculos .campo-3,
+.grid-veiculos .campo-4,
+.grid-veiculos .campo-5{
+    grid-column: span 2;
+}
+
+.grupo-campos .campo {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    label {
+        color: #18243D;
+
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    input {
+        width: 100%;
+        
+        background-color: #FFFFFF;
+        border: 1px solid #E3E8F0;
+        border-radius: 8px;
+
+        padding: 12px 11px;
+    }
+
+    span {
+        font-size: 10px;
+        text-align: left;
+    }
+}
+
+.action-formulario {
+    width: 100%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    span {
+        font-size: 12px;
+    }
+}
+
+.action-formulario .action {
+    display: flex;
+    gap: 10px;
+
+    .link-cancelar {
+        background-color: #FFF;
+        border: 1px solid #E3E8F0;
+        border-radius: 8px;
+
+        color: #18243D;
+        font-size: 13px;
+        font-weight: 600;
+
+        padding: 0 16px;
+        display: flex;
+        align-items: center;
+        height: 42px;
+    }
+
+    .btn-action {
+        background-color: #1550E0;
+        border-radius: 8px;
+        border: 1px solid #1550E0;
+        
+        color: #FFF;
+        font-size: 13px;
+        font-weight: 600;
+
+        padding: 0 16px;
+        height: 42px;
+
+        transition: .2s ease;
+    }
+
+    .btn-action:hover {
+        cursor: pointer;
+
+        background-color: #0740d1;
+    }
+}

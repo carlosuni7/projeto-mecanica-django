@@ -1,0 +1,180 @@
+.menu-lateral {
+    position: sticky;
+    top: 0;
+    left: 0;
+
+    padding: 30px 18px 0 18px;
+
+    height: 100vh;
+    width: 232px;
+    background-color: #FFFFFF;
+
+    border-right: solid 1px #E3E8F0;
+
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+}
+
+.logo-empresa {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    gap: 10px;
+
+    padding-left: 10px;
+}
+
+.logo-empresa .wrench {
+    width: 34px;
+    height: 34px;
+}
+
+.logo-empresa .nome-sistema {
+
+    display: flex;
+    flex-direction: column;
+
+    line-height: 145%;
+    text-align: left;
+
+    p {
+        font-size: 20px;
+        font-weight: 700;
+
+        color: #142557;
+
+    }
+
+    span {
+        font-size: 12px;
+        font-weight: 500;
+        color: #69758C;
+    }
+}
+
+.menu-lateral .oficina-atual {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 12px;
+
+    background-color: #F8FAFD;
+    border: 1px solid #E3E8F0;
+    border-radius: 8px;
+    p {
+        display: flex;
+        flex-direction: column;
+
+        span:nth-child(1) {
+            font-size: 12px;
+            color: #18243D;
+            font-weight: 600;
+        }
+
+        span:nth-child(2) {
+            font-size: 11px;
+            color: #69758C;
+            font-weight: 400;
+        }
+    }
+
+}
+
+.menu-lateral .navegacao {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+
+    width: 100%;
+}
+
+.navegacao label {
+    color: #69758C;
+
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.navegacao .nav-link {
+    width: 100%;
+    height: 46px;
+
+    padding: 0 14px;
+
+    display: flex;
+    flex-direction: row;
+
+    align-items: center;
+    gap: 12px;
+
+    background-color: #FFFFFF;
+    border-radius: 8px;
+
+    color: #69758C;
+
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 146%;
+
+    transition: all 0.2s ease-in-out;
+}
+
+.nav-link:hover {
+    background-color: #EEF6FF;
+
+    color: #1550E0;
+    font-weight: 600;
+}
+
+#home a[href="index.html"],
+#clientes a[href="clientes"],
+#veiculos a[href="veiculos.html"],
+#pecas a[href="pecas.html"] {
+    background-color: #EEF6FF;
+
+    color: #1550E0;
+    font-weight: 600;
+}
+
+.rodape-menu {
+    width: 196px;
+}
+
+.rodape-menu .ajuda {
+    background-color: #EEF6FF;
+
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    padding: 14px 14px;
+    border-radius: 12px;
+
+    line-height: 145%;
+    text-align: left;
+}
+
+.ajuda label:nth-child(1) {
+    color: #142557;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.ajuda label:nth-child(2) {
+    color: #69758C;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.ajuda label:nth-child(3) {
+    color: #1550E0;
+    font-size: 12px;
+    font-weight: 600;
+}
