@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="src/style.css">
+    <link rel="stylesheet" type="text/css" href="src/navegacao.css">
+    <link rel="stylesheet" type="text/css" href="src/cadastro.css"/>
+    
+    <script type="text/javascript" src="scripts.js"></script>
+    <title>Cadastro de Veiculos</title>
+  </head>
+  <body id="cadveiculos">
+    <header></header>
+
+    <aside class="menu-lateral">
+      <div class="logo-empresa">
+        <div class="wrench">
+          <!-- <img src="" alt="logo-wrench" /> -->
+        </div>
+        <div class="nome-sistema">
+          <p>Oficina</p>
+          <span>Gestão Inteligente</span>
+        </div>
+      </div>
+
+      <nav class="navegacao">
+        <label>Principal</label>
+        <a href="#" class="nav-link">
+          <img src="{% static 'assets/layout-dashboard.svg'%}" alt="icone dashboard" />
+          <span>Visão Geral</span>
+        </a>
+        <a href="{% url 'clientes' %}" class="nav-link">
+          <img src="{% static 'assets/users.svg'%}" alt="icone clientes" />
+          <span>Clientes</span>
+        </a>
+        <a href="{% url 'veiculos' %}" class="nav-link">
+          <img src="{% static 'assets/car-front.svg'%}" alt="icone veiculos" />
+          <span>Veiculos</span>
+        </a>
+        <a href="{% url 'pecas' %}" class="nav-link">
+          <img src="{% static 'assets/package.svg'%}" alt="icone peças" />
+          <span>Peças</span>
+        </a>
+        <a href="{% url 'orcamentos'%}" class="nav-link">
+          <img src="{% static 'assets/file-text.svg'%}" alt="icone orçamentos" />
+          <span>Orçamentos</span>
+        </a>
+      </nav>
+      
+      <div class="rodape-menu">
+        <div class="ajuda">
+          <label>Precisa de uma mão?</label>
+          <label>Conte com nossa central de ajuda.</label>
+          <label>Acessar suporte →</label>
+        </div>
+      </div>
+      </aside>
+
+      <main class="main-container">
+        <section class="cabecalho-pagina">
+          <div class="titulo-acao">
+            <div class="introducao">
+              <h1 class="titulo">Cadastrar veículo</h1>
+              <p class="descricao">
+                Vincule um veículo ao cliente e registre suas informações técnicas.
+              </p>
+            </div>
+          </div>
+        </section>
+        <section class="cadastro-orientacao">
+          <form class="formulario-cliente" action="" method="post">
+            <div class="painel">
+              <div class="cabecalho-painel">
+                <div class="introducao">
+                  <label>Cliente responsável</label>
+                  <label>Todo veículo deve estar vinculado a um cliente cadastrado.</label>
+                </div>
+              </div>
+              <div class="grupo-campos">
+                <div class="campo">
+                  <label for="nome">Cliente*</label>
+                  <input type="text" name="nome" placeholder="Digite o nome do cliente" />
+                  <span class="msg">Não encontrou o cliente? Cadastre-o antes de continuar.</span>
+                </div>
+              </div>
+            </div>
+            <div class="painel">
+              <div class="cabecalho-painel">
+                <div class="introducao">
+                  <label>Informações do veículo</label>
+                  <label>Confira a placa e os dados do documento do veículo.</label>
+                </div>
+              </div>
+              <div class="grupo-campos grid-veiculos">
+                <div class="campo campo-1">
+                  <label for="marca">Marca*</label>
+                  <input type="text" name="marca" placeholder="marca" />
+                </div>
+                <div class="campo campo-2">
+                  <label for="modelo">Modelo / versão *</label>
+                  <input type="text" name="modelo" placeholder="modelo" />
+                </div>
+                <div class="campo campo-3">
+                  <label for="ano_fabricacao">Ano fabricação *</label>
+                  <input type="text" name="ano_fabricacao" placeholder="ano fabricação" />
+                </div>
+                <div class="campo campo-4">
+                  <label for="ano_modelo">Ano Modelo *</label>
+                  <input type="text" name="ano_modelo" placeholder="ano modelo" />
+                </div>
+                <div class="campo campo-5">
+                  <label for="cor">Cor *</label>
+                  <input type="text" name="cor" placeholder="cor" />
+                </div>
+              </div>
+            </div>
+            <div class="action-formulario">
+              <span>* Campos obrigatórios</span>
+              <div class="action">
+                <a class="link-cancelar" href="veiculos.html">Cancelar</a>
+                <button type="submit" class="btn-action">
+                  <!-- <img src="" alt="icone cadastrar" /> -->
+                  <span>Cadastrar cliente</span>
+                </button>
+              </div>
+            </div>
+          </form>
+        </section>
+      </main>
+  </body>
+</html>
