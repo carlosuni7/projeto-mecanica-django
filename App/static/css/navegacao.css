@@ -56,7 +56,7 @@
     }
 }
 
-.menu-lateral .oficina-atual {
+.oficina-atual {
     display: flex;
     align-items: center;
 
