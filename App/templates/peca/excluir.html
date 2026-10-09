@@ -1,0 +1,75 @@
+{% load static django_bootstrap5 %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navegacao.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/exclusao.css' %}" />
+
+    <title>Excluir Peça</title>
+  </head>
+  <body id="cadclientes">
+    <header></header>
+
+    <main class="main-container">
+      <section class="cabecalho-pagina">
+        <div class="titulo-acao">
+          <div class="introducao">
+            <h1 class="titulo">Excluir peça</h1>
+            <p class="descricao">Confira os dados da peça antes de confirmar a exclusão.</p>
+          </div>
+        </div>
+      </section>
+      <section class="confirmacao-exclusao">
+        <form class="formulario-cliente" action="{% url 'exPeca' peca.id %}" method="POST">
+          {% csrf_token %}
+          <div class="resumo-exclusao">
+
+            <div class="pergunta-confirmacao">
+              <div class="simbolo-excluir">
+                <img src="{% static 'assets/trash-del.svg'%}" alt="">
+              </div>
+              <div class="mensagem">
+                <p>Deseja excluir a peça?</p>
+                <span>Você está prestes a excluir a peça abaixo.</span>
+              </div>
+            </div>
+
+            <div class="aviso-exclusao">
+              <img src="{% static 'assets/triangle-alert.svg' %}" alt="" />
+
+              <div class="aviso">
+                <p>A exclusão é permanente</p>
+                <span>O cadastro de [ {{ peca.nome }} ] será removido. Esta ação não pode ser desfeita.</span>
+              </div>
+            </div>
+            
+          </div>
+
+          <div class="action-confirmacao">
+              <a class="link-cancelar" href="{% url 'pecas' %}">Cancelar</a>
+              <button type="submit" class="btn-exclusao">
+                <span>Excluir cliente</span>
+              </button>
+
+          </div>
+        </form>
+        <div class="informacao-cadastro">
+          {% if messages %}
+            {% for message in messages %}
+              <p>{{ message }}</p>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
