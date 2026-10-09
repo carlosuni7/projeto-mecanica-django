@@ -1,0 +1,112 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navegacao.css' %}">
+    
+    
+    <script type="text/javascript" src="scripts.js"></script>
+    <title>Mecanica - Dashboard</title>
+  </head>
+  <body id="home">
+    <aside class="menu-lateral">
+      <div class="logo-empresa">
+        <div class="wrench">
+          <img src="{% static 'assets/wrench.svg' %}" alt="logo-wrench" />
+        </div>
+        <div class="nome-sistema">
+          <p >Oficina</p>
+          <span>Gestão Inteligente</span>
+        </div>
+      </div>
+      <div class="oficina-atual">
+        <img src="{% static 'assets/build-2.svg' %}" alt="icon oficina atual">
+        <p>
+          <span>Auto Center Silva</span>
+          <span>Unidade principal</span>
+        </p>
+        <img src="{% static 'assets/chevrons-up-down.svg' %}" alt=" icon chevrons">
+      </div>
+      <nav class="navegacao">
+        <label>Principal</label>
+        <a href="{% url 'dashboard' %}" class="nav-link">
+          <img src="{% static 'assets/layout-dashboard.svg'%}" alt="icone dashboard" />
+          <span>Visão Geral</span>
+        </a>
+        <a href="{% url 'clientes' %}" class="nav-link">
+          <img src="{% static 'assets/users.svg'%}" alt="icone clientes" />
+          <span>Clientes</span>
+        </a>
+        <a href="{% url 'veiculos' %}" class="nav-link">
+          <img src="{% static 'assets/car-front.svg'%}" alt="icone veiculos" />
+          <span>Veiculos</span>
+        </a>
+        <a href="{% url 'pecas' %}" class="nav-link">
+          <img src="{% static 'assets/package.svg'%}" alt="icone peças" />
+          <span>Peças</span>
+        </a>
+        <a href="{% url 'orcamentos'%}" class="nav-link">
+          <img src="{% static 'assets/file-text.svg'%}" alt="icone orçamentos" />
+          <span>Orçamentos</span>
+        </a>
+      </nav>
+      
+      <div class="rodape-menu">
+        <div class="ajuda">
+          <label>Precisa de uma mão?</label>
+          <label>Conte com nossa central de ajuda.</label>
+          <label>Acessar suporte →</label>
+
+        </div>
+      </div>
+      </aside>
+
+      <main class="main-container">
+        <div class="cabecalho-pagina">
+          <div class="titulo-acao">
+            <div class="introducao">
+              <h1 class="titulo">Clientes</h1>
+              <p class="descricao">
+                Organize seus contatos e acompanhe os veículos de cada cliente.
+              </p>
+            </div>
+            <a class="btn-action" href="">
+              <img src="{% static 'assets/plus.svg' %}" alt="icone cadastrar" />
+              <span>Cadastrar cliente</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="listagem-clientes">
+          <table>
+            <thead>
+              <tr>
+                <th>Nome completo</th>
+                <th>Email</th>
+                <th>CPF</th>
+                <th>Telefone</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              
+            </tbody>
+          </table>
+        </div>
+      </main>
+  </body>
+</html>
