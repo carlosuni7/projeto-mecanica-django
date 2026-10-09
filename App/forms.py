@@ -11,6 +11,7 @@ class ClienteModelForm(forms.ModelForm):
             'cpf': 'CPF*',
             'telefone': 'Celular / WhatsApp*'
         }
+        # Usar o widgets me permite estilizar de forma mais personalizada cada input e label do formulario de acordo com cada fields
         widgets = {
             'nome': forms.TextInput(attrs={
                 'class':'','placeholder': 'Digite o nome do cliente'}),
@@ -36,10 +37,31 @@ class MarcaModelForm(forms.ModelForm):
 class VeiculoModelForm(forms.ModelForm):
     class Meta:
         model = Veiculo
-        fields = ['marca', 'cliente','nome', 'modelo', 'ano_fabricacao', 'ano_modelo', 'cor']
-
+        fields = ['placa','marca','modelo', 'proprietario', 'tipo_veiculo', 'ano_fabricacao', 'ano_modelo', 'cor']
+        labels = {
+                    'placa': 'Placa*',
+                    'marca': 'Marca*',
+                    'modelo': 'Modelo*',
+                    'proprietario': 'Proprietario*',
+                    'tipo_veiculo': 'Tipo Veiculo*',
+                    'ano_fabricacao':'Ano de Fabricação*',
+                    'ano_modelo': 'Ano de Modelo*',
+                    'cor': 'Cor*'
+                }
+        widgets = {
+                    'placa': forms.TextInput(attrs={'class':'','placeholder': 'Digite placa do veiculo'}),
+                    'modelo': forms.TextInput(attrs={'class':'','placeholder': 'Modelo do veiculo'}),
+                    'cor': forms.TextInput(attrs={'class':'','placeholder': 'Digite cor do veiculo'}),
+                    'proprietario': forms.Select(attrs={'class':''}),
+                    'marca': forms.Select(attrs={'class':''}),
+                    'tipo_veiculo': forms.Select(attrs={'class':''}),
+                    'ano_fabricacao': forms.NumberInput(attrs={'class':'','placeholder': 'Ano de fabricação'}),
+                    'ano_modelo': forms.NumberInput(attrs={'class':'','placeholder': 'Ano de modelo'}),
+                    
+                    
+                }
 
 class PecaModelForm(forms.ModelForm):
     class Meta:
         model = Peca
-        fields = ['nome','valor_unitario']
+        fields = ['nome','valor', 'quantidade', 'status']
