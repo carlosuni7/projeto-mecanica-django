@@ -48,7 +48,7 @@
 
 .painel .grupo-campos {
     width: 100%;
-    
+
     display: flex;
     flex-direction: row;
     gap: 20px;
@@ -59,13 +59,14 @@
     grid-template-columns: repeat(6, 1fr);
 }
 
-.grid-veiculos .campo-1, .grid-veiculos .campo-2 {
+.grid-veiculos .campo-1,
+.grid-veiculos .campo-2 {
     grid-column: span 3;
 }
 
 .grid-veiculos .campo-3,
 .grid-veiculos .campo-4,
-.grid-veiculos .campo-5{
+.grid-veiculos .campo-5 {
     grid-column: span 2;
 }
 
@@ -85,12 +86,35 @@
 
     input {
         width: 100%;
-        
+
         background-color: #FFFFFF;
         border: 1px solid #E3E8F0;
         border-radius: 8px;
 
         padding: 12px 11px;
+    }
+
+    select {
+        width: 100%;
+
+        background-color: #FFFFFF;
+        border: 1px solid #E3E8F0;
+        border-radius: 8px;
+
+        padding: 12px 11px;
+
+        /* Propriedades adicionadas para o elemento <select> */
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+
+        /* Ícone de seta customizado via SVG embutido */
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="%2064748B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>');
+        background-repeat: no-repeat;
+        background-position: right 11px center;
+        padding-right: 36px;
+        /* Espaço adicional para o texto não sobrepor a seta */
     }
 
     span {
@@ -131,10 +155,14 @@
     }
 
     .btn-action {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
         background-color: #1550E0;
         border-radius: 8px;
         border: 1px solid #1550E0;
-        
+
         color: #FFF;
         font-size: 13px;
         font-weight: 600;
