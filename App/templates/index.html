@@ -11,12 +11,13 @@
 
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/navegacao.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
 
     <script type="text/javascript" src="scripts.js"></script>
-    <title>Mecanica</title>
+    <title>{{ titulo }}</title>
   </head>
   <body>
-    <header class="header">
+    <header class="header-welcome">
       <div class="logo-empresa">
         <div class="wrench">
           <img src="{% static 'assets/wrench.svg' %}" alt="logo-wrench" />
@@ -43,23 +44,42 @@
       </div>
     </header>
 
-    <main class="boas-vindas-container">
+    <main class="main-welcome">
       <section class="oficina-container">
-        <div>
-          <p>BOM TER VOCÊ POR AQUI</p>
-          <h1>Bem-vindo à sua oficina, Rafael.</h1>
-          <p>Tudo pronto para mais um dia de trabalho. Cuide dos seus clientes e deixe a organização com a gente.</p>
+        <div class="hero">
+          <div class="hero-content">
+            <div class="intro">
+              <span>BOM TER VOCÊ POR AQUI</span>
+              <h1>Bem-vindo à sua oficina, Usuário.</h1>
+              <p>Tudo pronto para mais um dia de trabalho. Cuide dos seus clientes e deixe a organização com a gente.</p>
+            </div>
 
-          <div class="oficina-atual">
-            <img src="{% static 'assets/build-2.svg' %}" alt="icon oficina atual" />
-            <p>
-              <span>Auto Center Silva</span>
-              <span>Unidade principal</span>
-            </p>
-            <img src="{% static 'assets/chevrons-up-down.svg' %}" alt=" icon chevrons" />
+            <div class="oficina-atual">
+              <img src="{% static 'assets/build-2.svg' %}" alt="icon oficina atual" />
+              <p>
+                <span>Auto Center Silva</span>
+                <span>Unidade principal</span>
+              </p>
+              <img src="{% static 'assets/chevrons-up-down.svg' %}" alt=" icon chevrons" />
+            </div>
+            <div class="acesso-sistema">
+              <a class="link-acesso" href="{% url 'dashboard' %}">
+                <p>Acessar painel</p>
+                <img src="{% static 'assets/arrow-right.svg' %}" alt="icon flecha" />
+              </a>
+
+              <span>Veja o que precisa da sua atenção hoje.</span>
+            </div>
+          </div>
+          <div class="hero-bg">
+            <img class="oficina-img" src="{% static 'assets/img/Oficina-organizada.png' %}" alt="" />
+            <p class="promessa">Sua oficina, em dia.</p>
+            <p class="apoio">Mais organização para você. Mais cuidado com cada cliente.</p>
           </div>
         </div>
-        <img src="{% static 'assets/img/Oficina-organizada.png' %}" alt="" />
+        <div class="recusos-sistema">
+            
+        </div>
       </section>
     </main>
     <footer>
