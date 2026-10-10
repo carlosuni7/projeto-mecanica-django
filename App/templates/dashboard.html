@@ -14,9 +14,45 @@
     
     
     <script type="text/javascript" src="scripts.js"></script>
-    <title>Mecanica - Dashboard</title>
+    <title>{{ titulo }}</title>
   </head>
   <body>
-    <h1>Template Dashboard</h1>
+
+    <aside class="menu-lateral">
+      <div class="logo-empresa">
+        <div class="wrench">
+          <img src="{% static 'assets/wrench.svg' %}" alt="logo-wrench" />
+        </div>
+        <div class="nome-sistema">
+          <p>Oficina</p>
+          <span>Gestão Inteligente</span>
+        </div>
+      </div>
+      <div class="oficina-atual">
+        <img src="{% static 'assets/build-2.svg' %}" alt="icon oficina atual" />
+        <p>
+          <span>Auto Center Silva</span>
+          <span>Unidade principal</span>
+        </p>
+        <img src="{% static 'assets/chevrons-up-down.svg' %}" alt=" icon chevrons" />
+      </div>
+      <nav class="navegacao">
+        <label>Principal</label>
+        {% for link in navegacao %}
+          <a href="{% url link.url %}" class="nav-link">
+          <img src="{% static 'assets/'|add:link.icone %}" alt="X" />
+          <span>{{ link.text }}</span>
+        </a>
+        {% endfor %}
+      </nav>
+
+      <div class="rodape-menu">
+        <div class="ajuda">
+          <label>Precisa de uma mão?</label>
+          <label>Conte com nossa central de ajuda.</label>
+          <label>Acessar suporte →</label>
+        </div>
+      </div>
+    </aside>
   </body>
 </html>
