@@ -3,30 +3,83 @@ from django.contrib import messages
 
 from .models import Cliente, Mecanico, Veiculo, Peca
 from .forms import ClienteModelForm, MecanicoModelForm, PecaModelForm, VeiculoModelForm
+nav = [
+        {
+            'text':'Visão Geral',
+            'url':'dashboard',
+            'icone':'layout-dashboard.svg',
+        },
+        {
+            'text':'Clientes',
+            'url':'clientes',
+            'icone':'users.svg',
+        },
+        {
+            'text':'Veiculos',
+            'url':'veiculos',
+            'icone':'car-front.svg',
+        },
+        {
+            'text':'Peças',
+            'url':'pecas',
+            'icone':'package.svg',
+        },
+        {
+            'text':'Orçamentos',
+            'url':'orcamentos',
+            'icone':'file-text.svg',
+        },
+    ]
 
 # Create your views here.
 def index(request):
-
-    dados = Cliente.objects.all()
     context = {
-        'titulo': 'Clientes',
-        'dados': dados
+        'titulo': 'Bem-Vindo',
     }
     return render(request, "index.html", context)
 
-def Dash(request):
+def Dash(request, nav = nav):
 
     context = {
-        'titulo': 'Dashboard'
+        'titulo': 'Dashboard',
+        'navegacao': nav
     }
     return render(request,"dashboard.html", context)
 # CRUD DE CLIENTES
 def Clientes(request):
+    nav = [
+            {
+                'text':'Visão Geral',
+                'url':'dashboard',
+                'icone':'layout-dashboard.svg',
+            },
+            {
+                'text':'Clientes',
+                'url':'clientes',
+                'icone':'users.svg',
+            },
+            {
+                'text':'Veiculos',
+                'url':'veiculos',
+                'icone':'car-front.svg',
+            },
+            {
+                'text':'Peças',
+                'url':'pecas',
+                'icone':'package.svg',
+            },
+            {
+                'text':'Orçamentos',
+                'url':'orcamentos',
+                'icone':'file-text.svg',
+            },
+        ]
 
     dados = Cliente.objects.all()
     context = {
         'titulo':'Clientes',
-        'dados': dados
+        'dados': dados,
+        'navegacao': nav
     }
     return render(request,"cliente/clientes.html",context)
 
@@ -87,14 +140,14 @@ def exCliente(request, pk):
 
     return render(request, "cliente/excluir.html", context)
 
-
 # CRUD DE MECANICOS
-def Mecanicos(request):
-
+def Mecanicos(request, nav = nav):
+    
     dados = Mecanico.objects.all()
     context = {
-        'titulo': 'Clientes',
-        'dados': dados
+        'titulo': 'Mecanicos',
+        'dados': dados,
+        'navegacao': nav
     }
     return render(request, "mecanicos.html", context)
 
@@ -120,11 +173,13 @@ def cadMecanico(request):
 
 
 # CRUD DE VEICULOS
-def Veiculos(request):
+def Veiculos(request, nav = nav):
+    
     dados = Veiculo.objects.all()
     context = {
         'titulo': 'Veiculos',
-        'dados': dados
+        'dados': dados,
+        'navegacao': nav,
     }
     return render(request, "veiculo/veiculos.html", context)
 
@@ -188,11 +243,12 @@ def exVeiculo(request, pk):
     return render(request, "veiculo/excluir.html", context)
 
 # CRUD DE PEÇAS
-def Pecas(request):
+def Pecas(request, nav = nav):
     dados = Peca.objects.all()
     context = {
         'titulo': 'Peças',
-        'dados': dados
+        'dados': dados,
+        'navegacao': nav
     }
     return render(request, "peca/pecas.html", context)
 
@@ -258,11 +314,12 @@ def exPeca(request, pk):
 
 # CRUD DE ORÇAMENTOS
 
-def Orcamentos(request):
+def Orcamentos(request, nav = nav):
     # dados = Orcamento.objects.all()
     context = {
         'titulo': 'Orçamentos',
-        'dados': ''
+        'dados': '',
+        'navegacao': nav
     }
     return render(request, "orcamentos.html", context)
 
