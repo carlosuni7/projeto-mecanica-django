@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navegacao.css' %}" />
+
+    <title>{{ titulo }}</title>
+  </head>
+  <body>
+    <div id="app">
+
+      <aside class="menu-lateral">
+        <div class="logo-empresa">
+          <div class="wrench">
+            <img src="{% static 'assets/wrench.svg' %}" alt="logo-wrench" />
+          </div>
+          <div class="nome-sistema">
+            <p>Oficina</p>
+            <span>Gestão Inteligente</span>
+          </div>
+        </div>
+        <div class="oficina-atual">
+          <img src="{% static 'assets/build-2.svg' %}" alt="icon oficina atual" />
+          <p>
+            <span>Auto Center Silva</span>
+            <span>Unidade principal</span>
+          </p>
+          <img src="{% static 'assets/chevrons-up-down.svg' %}" alt=" icon chevrons" />
+        </div>
+        <nav class="navegacao">
+          <label>Principal</label>
+          {% for link in navegacao %}
+            <a href="{% url link.url %}" class="nav-link">
+              <img src="{% static 'assets/'|add:link.icone %}" alt="X" />
+              <span>{{ link.text }}</span>
+            </a>
+          {% endfor %}
+        </nav>
+
+        <div class="rodape-menu">
+          <div class="ajuda">
+            <label>Precisa de uma mão?</label>
+            <label>Conte com nossa central de ajuda.</label>
+            <label>Acessar suporte →</label>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-container">
+        <section class="cabecalho-pagina">
+          <div class="titulo-acao">
+            <div class="introducao">
+              <h1 class="titulo">Orçamentos</h1>
+              <p class="descricao">Da proposta à aprovação: acompanhe os valores e o andamento de cada serviço.</p>
+            </div>
+            <a class="btn-action" href="#">
+              <img src="{% static 'assets/plus.svg' %}" alt="icone cadastrar" />
+              <span>Cadastrar Orçamento</span>
+            </a>
+          </div>
+        </section>
+        <section class="listagem l-clientes">
+          <div class="busca-filtros">
+            <span>Todos os orçamentos</span>
+          </div>
+          <table class="tabela">
+            <thead>
+              <tr>
+                <td>Cliente</td>
+                <td>Veiculo</td>
+                <td>Emissão</td>
+                <td>Status</td>
+                <td class="action">Ações</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for orc in orcamentos %}
+                <tr>
+                  <td>{{ orc.orcamento.veiculo.proprietario }}</td>
+                  <td>{{ orc.orcamento.veiculo.modelo }}</td>
+                  <td>{{ orc.orcamento.data_criacao }}</td>
+                  <td>{{ orc.orcamento.status }}</td>
+                  <td>
+                    <div class="action-registro">
+                      <a class="action-link" href="#"><img src="{% static 'assets/pencil.svg' %}" alt="icone alterar" /></a>
+                      <a class="action-link" href="#"><img src="{% static 'assets/trash.svg' %}" alt="icone apagar" /></a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="paginacao">
+            <span>Mostrando registros</span>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

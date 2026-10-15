@@ -1,0 +1,107 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/navegacao.css' %}" />
+
+    <title>{{ titulo }}</title>
+  </head>
+  <body>
+    <div id="app">
+      <aside class="menu-lateral">
+        <div class="logo-empresa">
+          <div class="wrench">
+            <img src="{% static 'assets/wrench.svg' %}" alt="logo-wrench" />
+          </div>
+          <div class="nome-sistema">
+            <p>Oficina</p>
+            <span>Gestão Inteligente</span>
+          </div>
+        </div>
+        <div class="oficina-atual">
+          <img src="{% static 'assets/build-2.svg' %}" alt="icon oficina atual" />
+          <p>
+            <span>Auto Center Silva</span>
+            <span>Unidade principal</span>
+          </p>
+          <img src="{% static 'assets/chevrons-up-down.svg' %}" alt=" icon chevrons" />
+        </div>
+        <nav class="navegacao">
+          <label>Principal</label>
+          {% for link in navegacao %}
+            <a href="{% url link.url %}" class="nav-link">
+              <img src="{% static 'assets/'|add:link.icone %}" alt="X" />
+              <span>{{ link.text }}</span>
+            </a>
+          {% endfor %}
+        </nav>
+
+        <div class="rodape-menu">
+          <div class="ajuda">
+            <label>Precisa de uma mão?</label>
+            <label>Conte com nossa central de ajuda.</label>
+            <label>Acessar suporte →</label>
+          </div>
+        </div>
+      </aside>
+
+      <main class="main-container">
+        <section class="cabecalho-pagina">
+          <div class="titulo-acao">
+            <div class="introducao">
+              <h1 class="titulo">Veículos</h1>
+              <p class="descricao">Todos os veículos da oficina, com seus proprietários.</p>
+            </div>
+            <a class="btn-action" href="{% url 'cadVeiculos' %}">
+              <img src="{% static 'assets/plus.svg' %}" alt="icone cadastrar" />
+              <span>Cadastrar veiculo</span>
+            </a>
+          </div>
+        </section>
+        <section class="listagem l-clientes">
+          <div class="busca-filtros">
+            <span>Todos os veículos</span>
+          </div>
+          <table class="tabela">
+            <thead>
+              <tr>
+                <td>Placa</td>
+                <td>Marca / Modelo</td>
+                <td>Cliente</td>
+                <td>Tipo Veiculo</td>
+                <td class="action">Ações</td>
+              </tr>
+            </thead>
+            <tbody>
+              {% for veiculo in dados %}
+                <tr>
+                  <td>{{ veiculo.placa }}</td>
+                  <td>{{ veiculo.marca }} {{ veiculo.modelo }}</td>
+                  <td style="color: #1550E0; font-weight: 600;">{{ veiculo.proprietario }}</td>
+                  <td>{{ veiculo.tipo_veiculo }}</td>
+                  <td>
+                    <div class="action-registro">
+                      <a class="action-link" href="{% url 'altVeiculo' veiculo.id %}"><img src="{% static 'assets/pencil.svg' %}" alt="icone alterar" /></a>
+                      <a class="action-link" href="{% url 'exVeiculo' veiculo.id %}"><img src="{% static 'assets/trash.svg' %}" alt="icone apagar" /></a>
+                    </div>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          <div class="paginacao">
+            <span>Mostrando registros</span>
+          </div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
