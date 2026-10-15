@@ -14,7 +14,6 @@ body {
   height: 100vh;
   width: 100%;
 
-  display: flex;
 
   color: #69758c;
   background-color: #f5f7fb;
@@ -26,6 +25,15 @@ body {
   display: flex;
   flex-direction: row;
 }
+
+#cadastro {
+  display: flex;
+}
+
+#cadastro .main-container {
+  padding: 32px;
+}
+
 
 a {
   text-decoration: none;

@@ -19,6 +19,60 @@
     gap: 24px;
 }
 
+.conta-ajuda .central-ajuda {
+    color: #69758C;
+
+    p {
+        font-size: 13px;
+        font-weight: 500;
+
+        text-align: left;
+    }
+}
+
+.conta-ajuda .usuario {
+    display: flex;
+    align-items: center;
+
+    gap: 10px;
+}
+
+.conta-ajuda .usuario .avatar {
+    width: 46px;
+    height: 46px;
+    background-color: #142557;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 1000px;
+
+    span {
+        color: #FFF;
+        font-size: 11px;
+        font-weight: 600;
+        line-height: 120%;
+    }
+}
+
+.conta-ajuda .usuario .conta {
+    display: flex;
+    flex-direction: column;
+
+    gap: 3px;
+    text-align: left;
+    .nome {
+        color: #142557;
+        font-weight: 600;
+        line-height: 120%;
+        text-align: left;
+    }
+    .perfil {
+        color: #69758C;
+        font-weight: 400;
+    }
+}
+
 .main-welcome {
     width: 100%;
     display: flex;
@@ -118,6 +172,8 @@
         background-color: #1550E0;
         height: 48px;
 
+        transition: .3s ease;
+
         p {
             font-size: 14px;
             font-weight: 600;
@@ -129,6 +185,10 @@
         img {
             width: 18px;
         }
+    }
+
+    .link-acesso:hover {
+       background-color: #0740d1; 
     }
 
     span {
@@ -146,13 +206,16 @@
     gap: 8px;
 
     padding: 16px 24px 24px;
-
+    border-radius: 12px;
     background-color: #EEF6FF;
 
     .oficina-img {
         flex-shrink: 0;
         height: 282px;
+
+        border-radius: 6px;
     }
+
     .promessa {
         color: #142557;
         text-align: center;
