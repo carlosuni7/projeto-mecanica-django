@@ -1,34 +1,15 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 
-from .models import Cliente, Mecanico, Veiculo, Peca
-from .forms import ClienteModelForm, MecanicoModelForm, PecaModelForm, VeiculoModelForm
+from .models import Cliente, Mecanico, Veiculo, Peca, Orcamento, StatusOrcamento, OrcamentoPeca
+from .forms import ClienteModelForm, MecanicoModelForm, PecaModelForm, VeiculoModelForm, OrcamentoModelForm
 nav = [
-        {
-            'text':'Visão Geral',
-            'url':'dashboard',
-            'icone':'layout-dashboard.svg',
-        },
-        {
-            'text':'Clientes',
-            'url':'clientes',
-            'icone':'users.svg',
-        },
-        {
-            'text':'Veiculos',
-            'url':'veiculos',
-            'icone':'car-front.svg',
-        },
-        {
-            'text':'Peças',
-            'url':'pecas',
-            'icone':'package.svg',
-        },
-        {
-            'text':'Orçamentos',
-            'url':'orcamentos',
-            'icone':'file-text.svg',
-        },
+        {'text':'Visão Geral','url':'dashboard','icone':'layout-dashboard.svg',},
+        {'text':'Clientes','url':'clientes','icone':'users.svg',},
+        {'text':'Mecanicos','url':'mecanicos','icone':'user-round-cog.svg'},
+        {'text':'Veiculos','url':'veiculos','icone':'car-front.svg',},
+        {'text':'Peças','url':'pecas','icone':'package.svg',},
+        {'text':'Orçamentos','url':'orcamentos','icone':'file-text.svg',},
     ]
 
 # Create your views here.
@@ -46,34 +27,7 @@ def Dash(request, nav = nav):
     }
     return render(request,"dashboard.html", context)
 # CRUD DE CLIENTES
-def Clientes(request):
-    nav = [
-            {
-                'text':'Visão Geral',
-                'url':'dashboard',
-                'icone':'layout-dashboard.svg',
-            },
-            {
-                'text':'Clientes',
-                'url':'clientes',
-                'icone':'users.svg',
-            },
-            {
-                'text':'Veiculos',
-                'url':'veiculos',
-                'icone':'car-front.svg',
-            },
-            {
-                'text':'Peças',
-                'url':'pecas',
-                'icone':'package.svg',
-            },
-            {
-                'text':'Orçamentos',
-                'url':'orcamentos',
-                'icone':'file-text.svg',
-            },
-        ]
+def Clientes(request, nav = nav):
 
     dados = Cliente.objects.all()
     context = {
@@ -81,7 +35,7 @@ def Clientes(request):
         'dados': dados,
         'navegacao': nav
     }
-    return render(request,"cliente/clientes.html",context)
+    return render(request,"cliente/gerenciamento.html",context)
 
 def cadClientes(request):
 
@@ -143,13 +97,13 @@ def exCliente(request, pk):
 # CRUD DE MECANICOS
 def Mecanicos(request, nav = nav):
     
-    dados = Mecanico.objects.all()
+    mecanicos = Mecanico.objects.all()
     context = {
         'titulo': 'Mecanicos',
-        'dados': dados,
+        'mecanicos': mecanicos,
         'navegacao': nav
     }
-    return render(request, "mecanicos.html", context)
+    return render(request, "mecanico/gerenciamento.html", context)
 
 def cadMecanico(request):
 
@@ -171,7 +125,6 @@ def cadMecanico(request):
     }
     return render(request,"cadMecanicos.html", context)
 
-
 # CRUD DE VEICULOS
 def Veiculos(request, nav = nav):
     
@@ -181,7 +134,7 @@ def Veiculos(request, nav = nav):
         'dados': dados,
         'navegacao': nav,
     }
-    return render(request, "veiculo/veiculos.html", context)
+    return render(request, "veiculo/gerenciamento.html", context)
 
 def cadVeiculo(request):
 
@@ -250,7 +203,7 @@ def Pecas(request, nav = nav):
         'dados': dados,
         'navegacao': nav
     }
-    return render(request, "peca/pecas.html", context)
+    return render(request, "peca/gerenciamento.html", context)
 
 def cadPeca(request):
 
@@ -303,7 +256,7 @@ def exPeca(request, pk):
         #form = ContatoModelForm(request.POST)
         #if form.is_valid():
             peca.delete()
-            return redirect("pecas")
+            return redirect("peca/gerenciamento")
 
     context = {
         "peca": peca
@@ -311,17 +264,15 @@ def exPeca(request, pk):
 
     return render(request, "peca/excluir.html", context)
 
-
 # CRUD DE ORÇAMENTOS
-
 def Orcamentos(request, nav = nav):
-    # dados = Orcamento.objects.all()
+    orcamentos = OrcamentoPeca.objects.all()
     context = {
         'titulo': 'Orçamentos',
-        'dados': '',
+        'orcamentos': orcamentos,
         'navegacao': nav
     }
-    return render(request, "orcamentos.html", context)
+    return render(request, "orcamento/gerenciamento.html", context)
 
 def cadOrcamento(request):
 

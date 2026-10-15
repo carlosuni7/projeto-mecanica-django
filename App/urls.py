@@ -11,7 +11,7 @@ urlpatterns = [
     path('exCliente/<int:pk>', exCliente, name="exCliente"),
     # URL de mecanicos
     path('mecanicos',Mecanicos,name="mecanicos"),
-    # path('/cadMecanico', cadClientes, name="cadClientes"),
+    path('cadMecanico', cadClientes, name="cadMecanico"),
     # URL de veiculos
     path('veiculos',Veiculos,name="veiculos"),
     path('cadVeiculos', cadVeiculo, name="cadVeiculos"),

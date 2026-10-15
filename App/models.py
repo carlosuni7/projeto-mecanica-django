@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Cliente(models.Model):
@@ -127,31 +128,49 @@ class Peca(models.Model):
 #     def __str__(self):
 #         return self.nome
 
-# class Orcamento(models.Model):
+class StatusOrcamento(models.Model):
+    descricao = models.CharField(
+        max_length=100, null=False, blank=False
+    )
+    def __str__(self):
+        return self.descricao
 
-#     veiculo = models.ForeignKey(Veiculo, on_delete=models.PROTECT)
+class Orcamento(models.Model):
 
-#     data = models.DateField(verbose_name="Data Orçamento")
+    # ORM (Mapeamento Objeto-Relacional) do Django
+    # na coluna veiculo eu recupero todos os dados da tabela veiculos como um objeto
+    veiculo = models.ForeignKey(Veiculo, on_delete=models.PROTECT)
 
-# class OrcamentoPeca(models.Model):
+    # Salva a data/hora atual apenas na criação do registro
+    # data_criacao = models.DateTimeField(auto_now_add=True, null=True, blank=False, time)
+    # preenche o campo com a data atual por padrão, mas manter a possibilidade de o usuário alterar essa data no sistema
+    data_criacao = models.DateField(default=timezone.now)
+    status = models.ForeignKey(StatusOrcamento, on_delete=models.PROTECT, null=True, blank=True)
+    # Relações N:M apontando para as tabelas intermediárias
+    pecas = models.ManyToManyField(Peca, through='OrcamentoPeca')
+    # servico = models.ForeignKey(OrcamentoServico, on_delete=models.PROTECT, null=True, blank=True)
 
-#     orcamento = models.ForeignKey(Orcamento, on_delete=models.PROTECT)
-#     peca = models.ForeignKey(Peca, on_delete=models.PROTECT)
+    def __str__(self):
+            return f"{self.veiculo} - {self.veiculo.proprietario} - {self.status}"
 
-#     quantidade = models.PositiveIntegerField()
-#     valor_cobrado = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+class OrcamentoPeca(models.Model):
 
+    # Relações N:M apontando para as tabelas intermediárias
+    orcamento = models.ForeignKey(Orcamento, on_delete=models.CASCADE)
+    peca = models.ForeignKey(Peca, on_delete=models.CASCADE)
+
+    quantidade = models.PositiveIntegerField()
+    valor_cobrado = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+
+    def __str__(self):
+        return f"{self.peca.nome} - {self.orcamento.veiculo.modelo} - {self.orcamento.status}"
 
 # class OrcamentoServico(models.Model):
 
-#     orcamento = models.ForeignKey(Orcamento, on_delete=models.PROTECT)
-#     servico = models.ForeignKey(Servico, on_delete=models.PROTECT)
+#     # Relações N:M apontando para as tabelas intermediárias
+#     orcamento = models.ForeignKey(Orcamento, on_delete=models.CASCADE)
+#     servico = models.ManyToManyField(Peca, through="OrcamentoServico")
+#     valor_cobrado = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
 
 
-# table mecanico_servico {
-#   id_mecanico_servico int [pk, not null]
 
-#   id_mecanico int  [Ref: > mecanico.id_mecanico]
-#   id_servico int [Ref: > servicos.id_servico]
-#   data date
-# }

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 
-from .models import Cliente, Mecanico, Marca, Veiculo, StatusPeca, Peca, TipoVeiculo
+from .models import Cliente, Mecanico, Marca, Veiculo, StatusPeca, Peca, TipoVeiculo, Orcamento, StatusOrcamento, OrcamentoPeca
 @admin.register(Cliente)
 class ClienteAdmin(admin.ModelAdmin):
     list_display = ('nome', 'email','cpf','telefone')
@@ -26,6 +26,21 @@ class VeiculoAdmin(admin.ModelAdmin):
 class StatusPecaAdmin(admin.ModelAdmin):
     list_display = ('descricao',)
 
-@admin.register(Peca)
-class PecaAdmin(admin.ModelAdmin):
-    list_display = ('nome', 'valor','quantidade', 'status')
+# @admin.register(Peca)
+# class PecaAdmin(admin.ModelAdmin):
+#     list_display = ('nome', 'valor','quantidade', 'status')
+
+
+# 1. Criar o Inline para a tabela intermédia
+class OrcamentoPecasInline(admin.TabularInline):
+    model = OrcamentoPeca
+    extra = 1  # Quantas linhas vazias aparecem por defeito para preencher
+@admin.register(Orcamento)
+class OrcamentoAdmin(admin.ModelAdmin):
+    # Quando abrir um orçamento no Admin, vera grelha para adicionar peças!
+    inlines = [OrcamentoPecasInline]
+# Registar a Peça e o Serviço normalmente
+
+@admin.register(StatusOrcamento)
+class StatusOrcamentoAdmin(admin.ModelAdmin):
+    list_display = ('descricao',)

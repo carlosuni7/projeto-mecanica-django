@@ -1,6 +1,6 @@
 from django import forms
-from .models import Cliente, Mecanico, Marca, Veiculo, Peca
-
+from .models import Cliente, Mecanico, Marca, Veiculo, Peca, Orcamento, StatusOrcamento, OrcamentoPeca
+from django.forms import ModelForm, inlineformset_factory
 class ClienteModelForm(forms.ModelForm):
     class Meta:
         model = Cliente
@@ -65,3 +65,43 @@ class PecaModelForm(forms.ModelForm):
     class Meta:
         model = Peca
         fields = ['nome','valor', 'quantidade', 'status']
+
+
+class StatusOrcamentoModelForm(forms.ModelForm):
+    class Meta:
+        model: StatusOrcamento
+        fields = ['descricao']
+
+class OrcamentoModelForm(forms.ModelForm):
+
+    class Meta:
+        model = Orcamento
+        fields = ['veiculo', 'status',]
+        labels = {
+            'veiculo':'',
+            'data':'Veículo *',
+        }
+
+OrcamentoPecaFormSet = inlineformset_factory(
+    parent_model= Orcamento,
+    model=OrcamentoPeca,
+    fields=('peca', 'quantidade','valor_cobrado'),
+    extra=1,
+    can_delete=True,
+    widgets={
+        'peca': forms.Select(attrs={
+            'class':'',
+            'placeholder': 'insira uma peça'
+        }),
+        'quantidade': forms.NumberInput(attrs={
+            'class': '', 
+            'min': '1', # força valor minimo
+            'placeholder': 'Qtd.'
+        }),
+        'valor_cobrado': forms.NumberInput(attrs={
+            'class': 'form-control',
+            'step': '0.01', # Permitir casas decimais
+            'placeholder': 'R$ 0,00'
+        }),
+    }
+)
