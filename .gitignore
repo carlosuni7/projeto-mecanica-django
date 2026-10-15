@@ -16,4 +16,4 @@ meuAmbVir/
 
 # Banco de dados local (opcional, mas recomendado não versionar dados locais)
 *.sqlite3
-db.sqlite3
+# db.sqlite3
