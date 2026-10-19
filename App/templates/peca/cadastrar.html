@@ -13,6 +13,7 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/navegacao.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/cadastro.css' %}" />
 
+    <script src="{% static 'js/scripts.js' %}"></script>
     <title>{{ titulo }}</title>
   </head>
   <body>
@@ -39,26 +40,12 @@
 
         <nav class="navegacao">
           <label>Principal</label>
-          <a href="{% url 'dashboard' %}" class="nav-link">
-            <img src="{% static 'assets/layout-dashboard.svg' %}" alt="icone dashboard" />
-            <span>Visão Geral</span>
-          </a>
-          <a href="{% url 'clientes' %}" class="nav-link">
-            <img src="{% static 'assets/users.svg' %}" alt="icone clientes" />
-            <span>Clientes</span>
-          </a>
-          <a href="{% url 'veiculos' %}" class="nav-link">
-            <img src="{% static 'assets/car-front.svg' %}" alt="icone veiculos" />
-            <span>Veiculos</span>
-          </a>
-          <a href="{% url 'pecas' %}" class="nav-link">
-            <img src="{% static 'assets/package.svg' %}" alt="icone peças" />
-            <span>Peças</span>
-          </a>
-          <a href="{% url 'orcamentos' %}" class="nav-link">
-            <img src="{% static 'assets/file-text.svg' %}" alt="icone orçamentos" />
-            <span>Orçamentos</span>
-          </a>
+          {% for link in navegacao %}
+            <a href="{% url link.url %}" class="nav-link">
+              <img src="{% static 'assets/'|add:link.icone %}" alt="X" />
+              <span>{{ link.text }}</span>
+            </a>
+          {% endfor %}
         </nav>
 
         <div class="rodape-menu">
@@ -129,7 +116,7 @@
               </div>
             </div>
           </form>
-          <div class="informacao-cadastro">
+          <div id="caixa-mensagem" class="caixa-mensagem">
             {% if messages %}
               {% for message in messages %}
                 <p>{{ message }}</p>
