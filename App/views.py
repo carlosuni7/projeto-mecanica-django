@@ -1,8 +1,27 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import HttpResponse
 
 from .models import Cliente, Mecanico, Veiculo, Peca, Orcamento, StatusOrcamento, OrcamentoPeca
 from .forms import ClienteModelForm, MecanicoModelForm, PecaModelForm, VeiculoModelForm, OrcamentoModelForm
+
+tables = {
+    'mecanico' : {
+        'titulo':'Mecanicos',
+        'nome': 'mecanico',
+        'url':'mecanicos',
+        'model': Mecanico,
+        'form': MecanicoModelForm
+    },
+    'peca' : {
+        'titulo':'Peças',
+        'nome': 'peca',
+        'url': 'pecas',
+        'model': Peca,
+        'form':PecaModelForm
+    }
+}
+
 nav = [
         {'text':'Visão Geral','url':'dashboard','icone':'layout-dashboard.svg',},
         {'text':'Clientes','url':'clientes','icone':'users.svg',},
@@ -11,6 +30,33 @@ nav = [
         {'text':'Peças','url':'pecas','icone':'package.svg',},
         {'text':'Orçamentos','url':'orcamentos','icone':'file-text.svg',},
     ]
+
+
+def ExcluirRegistro(request, tabela, pk):
+    registro = tables.get(tabela)
+    
+    model = registro['model'].objects.get(id=pk)
+    if registro['model'] is None:
+        return redirect('error')
+
+    if request.method == 'POST':
+        model.delete()
+        return redirect(registro['url'])
+    
+    context = {
+        'titulo':registro['titulo'],
+        'tabela':registro['nome'],
+        'descricao':'Confira os dados do registro antes de confirmar a exclusão.',
+        "registro": model
+    }
+    
+    return render(request, "excluir.html", context)
+
+def Erro(request):
+    context = {
+        'titulo': 'Pagina de Error 404'
+    }
+    return render(request, "error.html",context)
 
 # Create your views here.
 def index(request):
@@ -89,7 +135,9 @@ def exCliente(request, pk):
             return redirect("clientes")
 
     context = {
-        "cliente": cliente
+        "titulo":"cliente",
+        'descricao':'Confira os dados do cliente antes de confirmar a exclusão.',
+        "registro": cliente
     }
 
     return render(request, "cliente/excluir.html", context)
@@ -124,6 +172,24 @@ def cadMecanico(request):
         'form': form
     }
     return render(request,"cadMecanicos.html", context)
+
+def exMecanico(request, pk):
+
+    mecanico = Mecanico.objects.get(id=pk)
+    #print(contato)
+    if request.method == 'POST':
+        #form = ContatoModelForm(request.POST)
+        #if form.is_valid():
+            mecanico.delete()
+            return redirect("mecanicos")
+
+    context = {
+        "titulo":"mecanico",
+        'descricao':'Confira os dados do mecânico antes de confirmar a exclusão.',
+        "registro": mecanico
+    }
+
+    return render(request, "mecanico/excluir.html", context)
 
 # CRUD DE VEICULOS
 def Veiculos(request, nav = nav):
@@ -190,7 +256,9 @@ def exVeiculo(request, pk):
             return redirect("veiculos")
 
     context = {
-        "veiculo": veiculo
+            "titulo":"veiculo",
+            'descricao':'Confira os dados do veículo antes de confirmar a exclusão.',
+            "registro": veiculo
     }
 
     return render(request, "veiculo/excluir.html", context)
@@ -256,11 +324,13 @@ def exPeca(request, pk):
         #form = ContatoModelForm(request.POST)
         #if form.is_valid():
             peca.delete()
-            return redirect("peca/gerenciamento")
+            return redirect("pecas")
 
     context = {
-        "peca": peca
-    }
+                "titulo":"peca",
+                'descricao':'Confira os dados da peça antes de confirmar a exclusão.',
+                "registro": peca
+        }
 
     return render(request, "peca/excluir.html", context)
 
@@ -293,3 +363,21 @@ def cadOrcamento(request):
         'form': form
     }
     return render(request,"cadOrcamentos.html", context)
+
+def exOrcamento(request, pk):
+
+    orcamento = Orcamento.objects.get(id=pk)
+    #print(contato)
+    if request.method == 'POST':
+        #form = ContatoModelForm(request.POST)
+        #if form.is_valid():
+            orcamento.delete()
+            return redirect("orcamentos")
+
+    context = {
+                "titulo":"orcamento",
+                'descricao':'Confira os dados do orçamento antes de confirmar a exclusão.',
+                "registro": orcamento
+        }
+
+    return render(request, "orcamento/excluir.html", context)
