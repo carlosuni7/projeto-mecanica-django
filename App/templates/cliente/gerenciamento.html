@@ -16,8 +16,6 @@
   </head>
   <body>
     <div id="app">
-      <header></header>
-
       <aside class="menu-lateral">
         <div class="logo-empresa">
           <div class="wrench">
@@ -92,7 +90,7 @@
                   <td>
                     <div class="action-registro">
                       <a class="action-link" href="{% url 'altCliente' cliente.id %}"><img src="{% static 'assets/pencil.svg' %}" alt="icone alterar" /></a>
-                      <a class="action-link" href="{% url 'exCliente' cliente.id %}"><img src="{% static 'assets/trash.svg' %}" alt="icone apagar" /></a>
+                      <a class="action-link" href="{% url 'excluir-cliente' cliente.id %}"><img src="{% static 'assets/trash.svg' %}" alt="icone apagar" /></a>
                     </div>
                   </td>
                 </tr>

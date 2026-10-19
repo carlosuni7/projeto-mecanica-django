@@ -88,7 +88,7 @@
                   <td>
                     <div class="action-registro">
                       <a class="action-link" href="#"><img src="{% static 'assets/pencil.svg' %}" alt="icone alterar" /></a>
-                      <a class="action-link" href="#"><img src="{% static 'assets/trash.svg' %}" alt="icone apagar" /></a>
+                      <a class="action-link" href="{% url 'excluir-registro' tabela='mecanico' pk=mec.id %}"><img src="{% static 'assets/trash.svg' %}" alt="icone apagar" /></a>
                     </div>
                   </td>
                 </tr>
